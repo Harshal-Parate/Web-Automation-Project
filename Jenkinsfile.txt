@@ -1,0 +1,50 @@
+pipeline {
+
+    agent any
+
+    triggers {
+        cron('H 4 * * *') // Runs every day at 3:00 AM
+    }
+
+    stages {
+        stage('Build - Pull From GIT') {
+            steps {
+                echo "Building..."
+                git branch: 'main',
+                url: 'https://github.com/Harshal-Parate/Web-Automation-Project.git'
+            }
+        }
+
+        stage('Debug') {
+                    steps {
+                        sh 'printenv'
+                    }
+        }
+
+        stage('Running Tests') {
+            environment {
+                PATH = "/opt/homebrew/opt/maven/bin:$PATH"
+            }
+            steps {
+                echo "Running tests..."
+                sh 'mvn clean test -DsuiteXmlFile=testng.xml'
+            }
+        }
+
+        stage('Generate Reports') {
+            steps {
+                echo "Publishing..."
+                script {
+                    allure([
+                        includeProperties: false,
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [
+                            [path: 'allure-results']
+                        ]
+                    ])
+                }
+            }
+        }
+    }
+}
