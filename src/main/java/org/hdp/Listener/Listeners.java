@@ -3,6 +3,8 @@ package org.hdp.Listener;
 import io.qameta.allure.Allure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hdp.driver.DriverManager;
+import org.hdp.utilities.ScreenshotUtility;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -18,6 +20,7 @@ public class Listeners implements ITestListener {
 
     public void onTestFailure (ITestResult result) {
         logger.error("Failure of test"+ result.getName(), result.getThrowable());
+        ScreenshotUtility.takeScreenShot(DriverManager.getWebDriver(), result.getName());
         Allure.step(result.getName());
     }
 

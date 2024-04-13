@@ -2,26 +2,39 @@ package org.hdp.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+
+import java.util.Objects;
 
 public final class DriverManager {
 
     private DriverManager() {}
 
-    public static WebDriver driver;
+    private static final ThreadLocal<WebDriver> driverRef = new ThreadLocal<>();
+    private static WebDriver driver;
+
+    public static void setDriverRef(WebDriver driver) {
+        driverRef.set(driver);
+    }
+
+    public static WebDriver getWebDriver() {
+        return driverRef.get();
+    }
+
+    public static void unload() {
+        driverRef.remove();
+    }
 
     public static void initialization() {
-        if(driver == null) {
-            EdgeOptions options = new EdgeOptions();
-            options.addArguments("-headless");
-            driver = new EdgeDriver(options);
+        if (Objects.isNull(getWebDriver())) {
+            driver = new EdgeDriver();
+            setDriverRef(driver);
         }
     }
 
     public static void tearDown() {
-        if(driver != null) {
+        if (Objects.nonNull(getWebDriver())) {
             driver.quit();
-            driver = null;
+            unload();
         }
     }
 }

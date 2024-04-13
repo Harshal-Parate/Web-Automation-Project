@@ -8,25 +8,25 @@ import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 
-import static org.hdp.driver.DriverManager.driver;
-import static org.hdp.utilities.PropertyFileReader.readPropertyFileData;
+import static org.hdp.driver.DriverManager.getWebDriver;
+import static org.hdp.utilities.PropertyFileReaderUtility.readPropertyFileData;
 
 public class CommonToAllPages {
 
     public CommonToAllPages() {
-        driver.get(readPropertyFileData("URL"));
+        getWebDriver().get(readPropertyFileData("URL"));
     }
 
     public void clickOnElement(By by) {
-        driver.findElement(by).click();
+        getWebDriver().findElement(by).click();
     }
 
     public void enterInput(By by, String input) {
-        driver.findElement(by).sendKeys(input);
+        getWebDriver().findElement(by).sendKeys(input);
     }
 
     public String getElementText(By by) {
-        return driver.findElement(by).getText();
+        return getWebDriver().findElement(by).getText();
     }
 
     public WebElement explicitWait(WebDriver driver, int waitTimeInSeconds, By by) {

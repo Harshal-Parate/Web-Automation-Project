@@ -3,8 +3,8 @@ package org.hdp.pages.pom;
 import org.hdp.base.CommonToAllPages;
 import org.openqa.selenium.By;
 
-import static org.hdp.driver.DriverManager.driver;
-import static org.hdp.utilities.PropertyFileReader.readPropertyFileData;
+import static org.hdp.driver.DriverManager.getWebDriver;
+import static org.hdp.utilities.PropertyFileReaderUtility.readPropertyFileData;
 
 public class LoginPage extends CommonToAllPages {
 
@@ -28,7 +28,15 @@ public class LoginPage extends CommonToAllPages {
         enterInput(username, readPropertyFileData("Email"));
         enterInput(password, "Harshal@123");
         clickOnElement(signIn);
-        return explicitWait(driver, 5, errorMessage).getText();
+        return explicitWait(getWebDriver(), 5, errorMessage).getText();
+    }
+
+    //overloaded for DDT
+    public String loginToVwoWithInvalidCreds(String email, String pass) {
+        enterInput(username, email);
+        enterInput(password, pass);
+        clickOnElement(signIn);
+        return explicitWait(getWebDriver(), 5, errorMessage).getText();
     }
 
     public void loginToVwoWithValidCreds() {

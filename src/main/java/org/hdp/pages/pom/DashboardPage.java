@@ -2,7 +2,7 @@ package org.hdp.pages.pom;
 
 import org.hdp.base.CommonToAllPages;
 import org.openqa.selenium.By;
-import static org.hdp.driver.DriverManager.driver;
+import static org.hdp.driver.DriverManager.getWebDriver;
 
 public class DashboardPage extends CommonToAllPages {
 
@@ -13,7 +13,7 @@ public class DashboardPage extends CommonToAllPages {
     By usernameBox = By.xpath("//span[@data-qa='lufexuloga']");
 
     public String getUsernameFromDashBoardBox() {
-        explicitWait(driver, 10, usernameBox);
+        explicitWait(getWebDriver(), 10, usernameBox);
         return getElementText(usernameBox);
     }
 }

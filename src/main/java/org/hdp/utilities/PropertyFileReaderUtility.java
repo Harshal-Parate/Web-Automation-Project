@@ -3,7 +3,7 @@ package org.hdp.utilities;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class PropertyFileReader {
+public class PropertyFileReaderUtility {
 
     static FileInputStream fs;
     static Properties p;
