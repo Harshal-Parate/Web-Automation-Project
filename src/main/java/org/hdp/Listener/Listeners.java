@@ -9,6 +9,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import static org.hdp.utilities.ScreenshotUtility.takeScreenShot;
+
 public class Listeners implements ITestListener {
 
     Logger logger = LogManager.getLogger(Listeners.class);
@@ -20,8 +22,8 @@ public class Listeners implements ITestListener {
 
     public void onTestFailure (ITestResult result) {
         logger.error("Failure of test"+ result.getName(), result.getThrowable());
-        ScreenshotUtility.takeScreenShot(DriverManager.getWebDriver(), result.getName());
-        Allure.step(result.getName());
+        takeScreenShot(DriverManager.getWebDriver(), result.getName());
+        Allure.addAttachment(result.getName(), ScreenshotUtility.takeScreenShotAllure(DriverManager.getWebDriver(), result.getName()));
     }
 
     public void onTestSkipped (ITestResult result) {

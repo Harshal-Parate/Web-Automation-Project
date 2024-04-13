@@ -24,4 +24,14 @@ public final class ScreenshotUtility {
         }
 
     }
+    public static String takeScreenShotAllure(WebDriver driver, String name) {
+        File source = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File destination = new File("/Users/harshalparate/Downloads/SDET Master/Projects/WebAutomation/src/test/resources/Screenshots/"+name+"-"+currentDateTime()+".jpeg");
+        try {
+            FileHandler.copy(source, destination);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return destination.toString();
+    }
 }
