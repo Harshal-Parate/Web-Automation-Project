@@ -11,7 +11,7 @@
             <class name="org.hdp.tests.VwoLoginTestsPage">
                 <methods>
                     <include name="loginTestWithInvalidCreds"/>
-                    <include name="loginTestWithInvalidCreds"/>
+                    <include name="loginTestWithValidCreds"/>
                     <include name="loginTestWithInvalidCredsDataProvider"/>
                 </methods>
             </class>
