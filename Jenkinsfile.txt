@@ -23,11 +23,11 @@ pipeline {
 
         stage('Running Tests') {
             environment {
-                PATH = "/opt/homebrew/opt/maven/bin:$PATH"
+                PATH = "/opt/homebrew/bin/mvn:$PATH"
             }
             steps {
                 echo "Running tests..."
-                sh 'mvn clean test -DsuiteXmlFile=testng.xml'
+                sh 'clean test -DsuiteXmlFile=testng.xml'
             }
         }
 
