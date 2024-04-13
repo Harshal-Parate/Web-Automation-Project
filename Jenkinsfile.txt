@@ -23,7 +23,7 @@ pipeline {
 
         stage('Running Tests') {
             environment {
-                PATH = "/opt/homebrew/bin/mvn:$PATH"
+                PATH = "/opt/homebrew/opt/maven/bin:$PATH"
             }
             steps {
                 echo "Running tests..."
