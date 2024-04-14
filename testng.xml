@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="All Test Suite" thread-count="2" parallel="methods">
 
     <listeners>
         <listener class-name="org.hdp.Listener.Listeners"/>
     </listeners>
 
-    <test verbose="2" preserve-order="true" name="WebAutomation">
+    <test verbose="2" name="WebAutomation" thread-count="2">
         <classes>
             <class name="org.hdp.tests.VwoLoginTestsPage">
                 <methods>
