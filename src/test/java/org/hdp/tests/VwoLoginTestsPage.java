@@ -37,7 +37,7 @@ public class VwoLoginTestsPage extends CommonToAllTest {
     public void loginTestWithInvalidCredsDataProvider(String email, String password) {
         LoginPage loginPage = new LoginPage();
         String actualMessage = loginPage.loginToVwoWithInvalidCreds(email, password);
-        Assert.assertEquals(actualMessage, " email, password, IP address or location did not match");
+        Assert.assertEquals(actualMessage, "Your email, password, IP address or location did not match");
     }
 
 

@@ -2,7 +2,10 @@ package org.hdp.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.URL;
 import java.util.Objects;
 
 public final class DriverManager {
@@ -26,6 +29,9 @@ public final class DriverManager {
 
     public static void initialization() {
         if (Objects.isNull(getWebDriver())) {
+            //driver = new RemoteWebDriver(new URL("")); --> selenium grid
+//            EdgeOptions ed = new EdgeOptions();
+//            ed.addArguments("-headless");
             driver = new EdgeDriver();
             setDriverRef(driver);
         }
