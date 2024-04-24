@@ -22,6 +22,12 @@ public class LoginPage extends CommonToAllPages {
     By signUp = By.xpath("//span[@data-qa='dobevozose']");
     By errorMessage = By.id("js-notification-box-msg");
 
+
+    //getter used in glue code
+    public By getErrorMessage() {
+        return errorMessage;
+    }
+
     // Page Actions
 
     public String loginToVwoWithInvalidCreds() {
