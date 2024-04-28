@@ -16,6 +16,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- below are the setting for the jenkins browser selection and while xml to be executed
+        check surefire pulgin also-->
+        <browserProperty>Edge</browserProperty>
+        <suiteFile>testng.xml</suiteFile>
+
+
     </properties>
 
     <dependencies>
@@ -93,6 +100,21 @@
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
 
+                <!-- below are the setting for the jenkins browser selection and while xml to be executed-->
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.1</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>${suiteFile}</suiteXmlFile>
+                        </suiteXmlFiles>
+                        <systemPropertyVariables>
+                            <browserProperty>${browserProperty}</browserProperty>
+                        </systemPropertyVariables>
+                    </configuration>
+                </plugin>
+
+
                 <plugin>
                     <groupId>io.qameta.allure</groupId>
                     <artifactId>allure-maven</artifactId>
@@ -115,10 +137,6 @@
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>

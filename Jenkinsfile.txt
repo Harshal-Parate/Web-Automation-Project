@@ -27,7 +27,7 @@ pipeline {
             }
             steps {
                 echo "Running tests..."
-                sh 'mvn clean test -DsuiteXmlFile=testng.xml'
+                sh 'clean test -DsuiteFile=testng.xml'
             }
         }
 

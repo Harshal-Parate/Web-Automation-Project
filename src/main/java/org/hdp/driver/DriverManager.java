@@ -17,7 +17,7 @@ public final class DriverManager {
 
     public static final ThreadLocal<WebDriver> driverRef = new ThreadLocal<>();
 
-    public static DesiredCapabilities capabilities; // make the object for this class
+    //public static DesiredCapabilities capabilities; // make the object for this class
 
     public static void setDriver(WebDriver driver) {
         driverRef.set(driver);
@@ -32,8 +32,14 @@ public final class DriverManager {
     }
 
     public static void initialization(){
+
+        String browserProperty = System.getProperty("browserProperty");
+
+
         if (Objects.isNull(getWebDriver())) {
 
+            if(browserProperty.equals("Edge")) {
+            /*
             capabilities = new DesiredCapabilities(); // making an object
             capabilities.setBrowserName("MicrosoftEdge"); // name as per mentioned in terminal
             capabilities.setPlatform(Platform.ANY); // any machine OS
@@ -43,7 +49,6 @@ public final class DriverManager {
 
             String hubURL = "http://192.168.1.5:4444/wd/hub"; // url on which the hub is running
 
-
             WebDriver driver = null;
             try {
                 driver = new RemoteWebDriver(new URL(hubURL), options); // Dynamic dispatch (upcasting) in Remote WebDriver
@@ -52,14 +57,12 @@ public final class DriverManager {
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-
-
             setDriver(driver);
+             */
 
-
-            // normal execution
-//            WebDriver driver = new EdgeDriver();
-//            setDriver(driver);
+                WebDriver driver = new EdgeDriver();
+                setDriver(driver);
+            }
         }
     }
 
@@ -69,6 +72,18 @@ public final class DriverManager {
             unload();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*
 
