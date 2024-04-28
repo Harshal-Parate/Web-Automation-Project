@@ -9,9 +9,7 @@ pipeline {
     stages {
         stage('Build - Pull From GIT') {
             steps {
-                echo "Building..."
-                git branch: 'main',
-                url: 'https://github.com/Harshal-Parate/Web-Automation-Project.git'
+                git 'https://github.com/Harshal-Parate/Web-Automation-Project.git'
             }
         }
 
