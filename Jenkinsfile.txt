@@ -9,13 +9,15 @@ pipeline {
     stages {
         stage('Build - Pull From GIT') {
             steps {
-                git 'https://github.com/Harshal-Parate/Web-Automation-Project.git'
+                echo "Building..."
+                git branch: 'main',
+                url: 'https://github.com/Harshal-Parate/Web-Automation-Project.git'
             }
         }
 
         stage('Debug') {
                     steps {
-                        sh 'printenv'
+                        sh 'env'
                     }
         }
 
@@ -25,7 +27,7 @@ pipeline {
             }
             steps {
                 echo "Running tests..."
-                sh 'clean test -DsuiteFile=testng.xml'
+                sh 'mvn clean test -DsuiteFile=testng.xml'
             }
         }
 
